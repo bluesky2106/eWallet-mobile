@@ -21,11 +21,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     _tapTermOfUseGestureRecognizer = TapGestureRecognizer()
     ..onTap = () {
+      print("Tap term of use");
       // Navigator.pushNamed(context, ScreenRouter.TNC);
     };
 
     _tapPrivacyPolicyGestureRecognizer = TapGestureRecognizer()
     ..onTap = () {
+      print("Tap policy");
       // Navigator.pushNamed(context, ScreenRouter.POLICY);
     };
   }

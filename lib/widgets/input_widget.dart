@@ -36,8 +36,8 @@ class _InputWidgetState extends State<InputWidget> {
           });
         },
         child: _isShowPwd
-            ? Icon(Icons.visibility_off, color: Colors.grey,)
-            : Icon(Icons.visibility, color: Colors.grey),
+            ? Icon(Icons.visibility_off, color: Colors.blue, size: DEFAULT_HEIGHT * 3/4,)
+            : Icon(Icons.visibility, color: Colors.grey, size: DEFAULT_HEIGHT * 3/4,),
       );
     }
     return Container();
@@ -51,7 +51,7 @@ class _InputWidgetState extends State<InputWidget> {
         children: [
           TextFormField(
             key: Key(widget.title),
-            obscureText: widget.isPwd,
+            obscureText: widget.isPwd && !_isShowPwd,
             style: TextStyle(fontSize: 20.0),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -67,7 +67,7 @@ class _InputWidgetState extends State<InputWidget> {
           ),
 
           Positioned(
-            bottom: DEFAULT_HEIGHT / 2,
+            bottom: DEFAULT_HEIGHT * 1 / 8,
             right: 10,
             child: _showPwd(),
           ),
