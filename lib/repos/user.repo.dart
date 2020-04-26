@@ -59,4 +59,19 @@ class UserRepository {
     await Future.delayed(Duration(seconds: 1));
     return false;
   }
+
+  /// select current [user] inside databse.
+  ///
+  /// return user object if any.
+  Future<User> currentUser() async {
+    return await this.db.selectUser();
+  }
+
+  /// clean [user] session
+  /// 
+  /// return true.
+  Future<bool> logout() async {
+    await this.db.deleteAllUsers();
+    return true;
+  }
 }
