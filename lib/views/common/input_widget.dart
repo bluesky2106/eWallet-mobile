@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const DEFAULT_HEIGHT = 50.0;
+const _DEFAULT_HEIGHT = 50.0;
 
 class InputWidget extends StatefulWidget {
   final String title;
@@ -36,8 +36,8 @@ class _InputWidgetState extends State<InputWidget> {
           });
         },
         child: _isShowPwd
-            ? Icon(Icons.visibility_off, color: Colors.blue, size: DEFAULT_HEIGHT * 3/4,)
-            : Icon(Icons.visibility, color: Colors.grey, size: DEFAULT_HEIGHT * 3/4,),
+            ? Icon(Icons.visibility_off, color: Colors.blue, size: _DEFAULT_HEIGHT * 3/4,)
+            : Icon(Icons.visibility, color: Colors.grey, size: _DEFAULT_HEIGHT * 3/4,),
       );
     }
     return Container();
@@ -46,7 +46,7 @@ class _InputWidgetState extends State<InputWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: DEFAULT_HEIGHT,
+      height: _DEFAULT_HEIGHT,
       child: Stack(
         children: [
           TextFormField(
@@ -67,7 +67,7 @@ class _InputWidgetState extends State<InputWidget> {
           ),
 
           Positioned(
-            bottom: DEFAULT_HEIGHT * 1 / 8,
+            bottom: _DEFAULT_HEIGHT * 1 / 8,
             right: 10,
             child: _showPwd(),
           ),
