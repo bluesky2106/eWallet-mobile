@@ -1,0 +1,8 @@
+{
+    "baseURL": "http://localhost:6000/api",
+    "infuraURL": "https://rinkeby.infura.io/v3/be91d61b460a4f0199e55466c97f2d3a",
+    "infuraWsURL": "wss://rinkeby.infura.io/ws/v3/be91d61b460a4f0199e55466c97f2d3a",
+    "blockCypherURL": "https://api.blockcypher.com/v1/btc/test3",
+    "etherTxURL": "https://rinkeby.etherscan.io/tx/",
+    "btcTxURL": "https://www.blockchain.com/btctest/tx/"
+}
