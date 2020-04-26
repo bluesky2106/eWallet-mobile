@@ -1,14 +1,13 @@
-import 'package:eWallet/widgets/button_widget.dart';
-import 'package:eWallet/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:eWallet/views/common/common.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();  
   TapGestureRecognizer _tapTermOfUseGestureRecognizer, _tapPrivacyPolicyGestureRecognizer;
 

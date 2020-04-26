@@ -1,19 +1,18 @@
-import 'package:eWallet/widgets/button_widget.dart';
-import 'package:eWallet/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:eWallet/views/common/common.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildTop() {
     return Column(
       children: [
-          SizedBox(
+        SizedBox(
           height: 150.0,
           child: Image.asset('assets/itv.jpg'),
         ),
