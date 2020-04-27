@@ -25,12 +25,14 @@ class UserRepository {
       return null;
     }
 
-    UserLoginResp loginResp = UserLoginResp.fromMap(json.decode(response.data));
+    Resp resp = Resp.fromMap(response.data);
+    UserLoginResp loginResp = UserLoginResp.fromMap(resp.result);
+
     String token = loginResp.token;
     if (token.isNotEmpty) {
       response = await api.userInfo(token);
-      Resp resp = Resp.fromMap(json.decode(response.data));
-      User user = User.fromMap(json.decode(resp.result));
+      Resp resp = Resp.fromMap(response.data);
+      User user = User.fromMap(resp.result);
       this.db.insertUser(user);
 
       // save to keystore
