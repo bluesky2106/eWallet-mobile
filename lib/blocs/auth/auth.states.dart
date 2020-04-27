@@ -32,6 +32,11 @@ class AuthenticationUnauthenticated extends AuthenticationState {
   String toString() => 'AuthenticationUnauthenticated';
 }
 
+class AuthenticationLoading extends AuthenticationState {
+  @override
+  String toString() => 'AuthenticationLoading';
+}
+
 // error - authenticate failed
 class AuthenticationError extends AuthenticationState {
   @override

@@ -5,8 +5,9 @@ const _DEFAULT_HEIGHT = 50.0;
 class InputWidget extends StatefulWidget {
   final String title;
   final bool isPwd;
+  final TextEditingController controller;
 
-  const InputWidget({Key key,  @required this.title, this.isPwd = false}) : super(key: key);
+  const InputWidget({Key key,  @required this.title, this.isPwd = false, @required this.controller}) : super(key: key);
 
   @override
   _InputWidgetState createState() => _InputWidgetState();
@@ -64,6 +65,7 @@ class _InputWidgetState extends State<InputWidget> {
               labelStyle: TextStyle(color: Colors.blue),
             ),
             keyboardType: TextInputType.emailAddress,
+            controller: widget.controller,
           ),
 
           Positioned(

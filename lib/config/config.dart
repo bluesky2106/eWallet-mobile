@@ -48,4 +48,9 @@ class Config {
     blockCypherURL = jsonResult['blockCypherURL'];
     btcTxURL = jsonResult['btcTxURL'];
   }
+
+  @override
+  String toString() {
+    return 'Config {baseURL: $baseURL, infuraURL: $infuraURL, infuraWsURL: $infuraWsURL, blockCypherURL: $blockCypherURL, btcTxURL: $btcTxURL}';
+  }
 }
