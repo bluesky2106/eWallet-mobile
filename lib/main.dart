@@ -2,16 +2,12 @@
 import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:eWallet/router/routes.dart';
+import 'package:eWallet/router/router.dart';
 import 'package:eWallet/blocs/auth/auth.dart';
 import 'package:eWallet/repos/user.repo.dart';
 import 'package:eWallet/repos/db/db.dart';
 import 'package:eWallet/repos/api/api.dart';
 import 'package:eWallet/config/config.dart';
-import 'package:eWallet/views/loading.indicator.dart';
-import 'package:eWallet/views/splash.page.dart';
-import 'package:eWallet/views/homepage.dart';
-import 'package:eWallet/views/login/login.page.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -67,22 +63,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'eWallet App',
-      // initialRoute: '/login',
-      routes: router.routes(),
-      home: BlocBuilder<AuthBloc, AuthenticationState>(
-        builder: (context, state) {
-          if (state is AuthenticationAuthenticated) {
-            return Homepage();
-          }
-          if (state is AuthenticationUnauthenticated) {
-            return LoginPage(userRepository: userRepository);
-          }
-          if (state is AuthenticationLoading) {
-            return LoadingIndicator();
-          }
-          return SplashPage();
-        },
-      ),
+      initialRoute: Router.rootDir,
+      onGenerateRoute: router.generateRoute,
+      onUnknownRoute: router.unknownRoute,
       debugShowCheckedModeBanner: false,
     );
   }

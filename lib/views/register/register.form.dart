@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:eWallet/router/router.dart';
 import 'package:eWallet/views/common/common.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterForm extends StatefulWidget {
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _RegisterFormState createState() => _RegisterFormState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();  
   TapGestureRecognizer _tapTermOfUseGestureRecognizer, _tapPrivacyPolicyGestureRecognizer;
 
@@ -147,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _handleBackToLogin() {
-    Navigator.pushNamed(context, '/login');
+    Navigator.pushNamed(context, Router.loginDir);
   }
 
   void _handleRegister() {

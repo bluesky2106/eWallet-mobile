@@ -1,8 +1,7 @@
+import 'package:eWallet/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eWallet/blocs/login/login.dart';
-import 'package:eWallet/blocs/auth/auth.dart';
-import 'package:eWallet/repos/user.repo.dart';
 import 'package:eWallet/views/common/common.dart';
 
 class LoginForm extends StatefulWidget {
@@ -92,7 +91,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _handleRegister() {
-    Navigator.pushNamed(context, '/register');
+    Navigator.pushNamed(context, Router.registerDir);
   }
 
   void _handleLoginButtonPress() {
@@ -141,5 +140,12 @@ class _LoginFormState extends State<LoginForm> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }
