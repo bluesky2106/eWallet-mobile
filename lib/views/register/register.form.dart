@@ -157,8 +157,6 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
-    print(_formKey);
-
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
