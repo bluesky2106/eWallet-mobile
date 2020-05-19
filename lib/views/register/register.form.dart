@@ -1,5 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:eWallet/blocs/register/register.dart';
 import 'package:eWallet/router/router.dart';
 import 'package:eWallet/views/common/common.dart';
 
@@ -11,6 +13,10 @@ class RegisterForm extends StatefulWidget {
 class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();  
   TapGestureRecognizer _tapTermOfUseGestureRecognizer, _tapPrivacyPolicyGestureRecognizer;
+  final _fullNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   bool _isCheck;
 
@@ -52,13 +58,13 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget _buildRegisterInfo() {
     return Column(
       children: [
-        InputWidget(title: "Name"),
+        InputWidget(title: "Name", controller: _fullNameController,),
         SizedBox(height: 15.0),
-        InputWidget(title: "Email"),
+        InputWidget(title: "Email", controller: _emailController,),
         SizedBox(height: 15.0),
-        InputWidget(title: "Password", isPwd: true),
+        InputWidget(title: "Password", isPwd: true, controller: _passwordController,),
         SizedBox(height: 15.0),
-        InputWidget(title: "Confirm Password", isPwd: true),
+        InputWidget(title: "Confirm Password", isPwd: true, controller: _confirmPasswordController,),
         SizedBox(height: 5.0,),
       ],
     );
@@ -152,7 +158,17 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _handleRegister() {
-    Navigator.pop(context);
+    BlocProvider.of<RegisterBloc>(context).add(
+      RegisterButtonPressed(
+        fullName: _fullNameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        confirmPassword: _confirmPasswordController.text,
+        checkTermAndAgreement: _isCheck,
+      ),
+    );
+
+    // Navigator.pop(context);
   }
 
   @override
@@ -178,5 +194,14 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 }

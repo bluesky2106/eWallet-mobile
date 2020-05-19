@@ -6,6 +6,7 @@ import 'package:eWallet/router/router.dart';
 import 'package:eWallet/blocs/auth/auth.dart';
 import 'package:eWallet/repos/user.repo.dart';
 import 'package:eWallet/repos/db/db.dart';
+import 'package:eWallet/repos/local/storage.dart';
 import 'package:eWallet/repos/api/api.dart';
 import 'package:eWallet/config/config.dart';
 
@@ -37,8 +38,9 @@ void main() async {
   final db = DB();
   await db.open();
   final api = API();
+  final storage = Storage();
 
-  final userRepository = UserRepository(db: db, api: api);
+  final userRepository = UserRepository(db: db, api: api, storage: storage);
   runApp(
     BlocProvider<AuthBloc>(
       create: (context) {

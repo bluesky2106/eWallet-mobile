@@ -16,6 +16,7 @@ class Root extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // userRepository.db.deleteAllUsers();
     return BlocBuilder<AuthBloc, AuthenticationState>(
       builder: (context, state) {
         if (state is AuthenticationAuthenticated) {

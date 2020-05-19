@@ -1,5 +1,5 @@
 {
-    "baseURL": "http://localhost:7000/api",
+    "baseURL": "http://10.0.2.2:7000/api",
     "infuraURL": "https://rinkeby.infura.io/v3/be91d61b460a4f0199e55466c97f2d3a",
     "infuraWsURL": "wss://rinkeby.infura.io/ws/v3/be91d61b460a4f0199e55466c97f2d3a",
     "blockCypherURL": "https://api.blockcypher.com/v1/btc/test3",

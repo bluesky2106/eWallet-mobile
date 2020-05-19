@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:eWallet/config/config.dart';
+import 'package:eWallet/models/user.register.dart';
 
 class API {
   // Below codes are used to create a singleton instance of API class
@@ -40,27 +41,23 @@ class API {
   /// Call auth with [email], [password]
   ///
   /// Response jwt if success. Otherwise throw error
-  Future<Response> auth(String email, password) async {
-    return await _dio.post("/auth/login", data: {"Email": email, "Password": password});
+  Future<Response> auth(String email, password) {
+    return _dio.post("/auth/login", data: {"Email": email, "Password": password});
   }
 
   /// Call register with [email], [password], and [confirm password]
   ///
   /// Response user object if success
-  Future<Response> register({String email, password, confirmPassword}) async {
-    return await _dio.post("/auth/register", data: {
-      "Email": email,
-      "Password": password,
-      "ConfirmPassword": confirmPassword
-    });
+  Future<Response> register(UserRegisterReq req) {
+    return _dio.post("/auth/register", data: req.toMap());
   }
 
   /// get user info by [token]
   ///
   /// Response user object if any
-  Future<Response> userInfo(String token) async {
+  Future<Response> userInfo(String token) {
     _dio.options.headers['Authorization'] = 'Bearer ' + token;
-    return await _dio.get("/auth/user-profile");
+    return _dio.get("/auth/user-profile");
   }
 
   /// [GET] /check-email-exist?email={email}
