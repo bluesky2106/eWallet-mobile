@@ -1,5 +1,6 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:eWallet/views/loading.indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:eWallet/blocs/register/register.dart';
 import 'package:eWallet/router/router.dart';
@@ -70,10 +71,12 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  Widget _buildRegisterBtn() {
+  Widget _buildRegisterBtn(RegisterState state) {
     return Column(
       children: [
-        ButtonWidget(
+        (state == RegisterLoading())
+        ? LoadingIndicator()
+        : ButtonWidget(
           key: Key('BtnRegister'),
           onPressed: _handleRegister,
           title: 'Register',
@@ -153,6 +156,32 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
+  Widget _buildContent(RegisterState state) {
+    if (state is RegisterSuccess) {
+      return Container();
+    }
+
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildTop(),
+              _buildRegisterInfo(),
+              _buildPrivacyPolicy(),
+              _buildRegisterBtn(state),
+              _buildBottom(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   void _handleBackToLogin() {
     Navigator.pushNamed(context, Router.loginDir);
   }
@@ -168,30 +197,26 @@ class _RegisterFormState extends State<RegisterForm> {
       ),
     );
 
-    // Navigator.pop(context);
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 10.0),
-          child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildTop(),
-                  _buildRegisterInfo(),
-                  _buildPrivacyPolicy(),
-                  _buildRegisterBtn(),
-                  _buildBottom(),
-                ],
-              ),
+    return BlocListener<RegisterBloc, RegisterState>(
+      listener: (context, state) {
+        if (state is RegisterFailure) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('${state.error}'),
+              backgroundColor: Colors.red,
             ),
-        ),
+          );
+        }
+      },
+      child: BlocBuilder<RegisterBloc, RegisterState>(
+        builder: (context, state) {
+          return _buildContent(state);
+        },
       ),
     );
   }
